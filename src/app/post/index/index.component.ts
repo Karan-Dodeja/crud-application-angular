@@ -1,12 +1,22 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { Post } from '../post';
+import { PostService } from '../post.service';
 
 @Component({
   selector: 'app-index',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, RouterModule],
   templateUrl: './index.component.html',
-  styleUrl: './index.component.css'
+  styleUrl: './index.component.css',
 })
-export class IndexComponent {
-
+export class IndexComponent implements OnInit {
+  posts: Post[] = [];
+  constructor(public postService: PostService) {}
+  ngOnInit(): void {
+    this.postService.getAll().subscribe((dataV: Post[]) => {
+      this.posts = dataV;
+    });
+  }
 }
