@@ -7,8 +7,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { PostService } from '../post.service';
-import { Router } from 'express';
-import { ActivatedRoute } from '@angular/router';
+
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -40,7 +40,7 @@ export class CreateComponent {
   submit() {
     this.postService.create(this.form.value).subscribe((res: any) => {
       alert('Post Created Successfully.');
-      (<any>this.router).navigate('post/index');
+      this.router.navigateByUrl('post/index');
     });
   }
 }

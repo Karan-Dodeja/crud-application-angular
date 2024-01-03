@@ -1,1 +1,29 @@
-<p>edit works!</p>
+<div class="container">
+    <h1 class="text-center">Update Post</h1>
+    <a href="" routerLink="/post/index" class="btn btn-warn">Back</a>
+    <form action="" [formGroup]="form" (ngSubmit)="submit()">
+
+        <div class="form-group">
+            <label for="">Title</label>
+            <input type="text" id="title" formControlName="title" [ngModel]="post.title" class="form-control" />
+            <div class="alert alert-danger" *ngIf="f['title'].touched && f['title'].invalid">
+                <div class="" *ngIf="f['title'].errors && f['title'].errors['required']">
+                    Title is required.
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="body">Title</label>
+            <input type="text" id="body" formControlName="body" class="form-control" [ngModel]="post.body" />
+            <div class="alert alert-danger" *ngIf="f['body'].touched && f['body'].invalid">
+                <div class="" *ngIf="f['body'].errors && f['body'].errors['required']">
+                    Title is required.
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Update</button>
+
+    </form>
+</div>
