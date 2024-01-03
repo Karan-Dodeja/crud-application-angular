@@ -13,10 +13,21 @@ import { PostService } from '../post.service';
 })
 export class IndexComponent implements OnInit {
   posts: Post[] = [];
+  
   constructor(public postService: PostService) {}
+  
   ngOnInit(): void {
     this.postService.getAll().subscribe((dataV: Post[]) => {
       this.posts = dataV;
     });
+  }
+
+  deletePost(id: number) {
+    this.postService.delete(id).subscribe(res => {
+      this.posts = this.posts.filter(item => {
+        item.id !== id
+      });
+      alert("Post deleted successfully")
+    })
   }
 }
