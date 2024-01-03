@@ -19,7 +19,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CreateComponent {
   form!: FormGroup;
-  constructor(public postService: PostService, private router: Router, private route: ActivatedRoute) {}
+  f: any;
+  constructor(
+    public postService: PostService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -32,10 +37,10 @@ export class CreateComponent {
     return this.form.controls;
   }
 
-  submit(){
-    this.postService.create(this.form.value).subscribe((res:any) => {
-      alert("Post Created Successfully.");
+  submit() {
+    this.postService.create(this.form.value).subscribe((res: any) => {
+      alert('Post Created Successfully.');
       (<any>this.router).navigate('post/index');
-    })
+    });
   }
 }
